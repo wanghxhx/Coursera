@@ -70,7 +70,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // below.
 // We changed this code to retrieve all categories from the server instead of
 // simply requesting home HTML snippet. We now also have another function
-// called buildAndShowHomeHTML that will receive all the categories from the server
+// called 
+//buildAndShowHomeHTML that will receive all the categories from the server
 // and process them: choose random category, retrieve home HTML snippet, insert that
 // random category into the home HTML snippet, and then insert that snippet into our
 // main page (index.html).
@@ -101,11 +102,8 @@ function buildAndShowHomeHTML (categories) {
       // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
       // variable's name implies it expects.
-      var chosenCategoryShortName = chooseRandomCategory (categories);
+     var chosenCategoryShortName = chooseRandomCategory(categories).short_name;      
 
-
-      var homeHtmlToInsertIntoMainPage =
-              insertProperty(homeHtmlUrl, "randomCategoryShortName", 'chosenCategoryShortName');
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
       // chosen category from STEP 2. Use existing insertProperty function for that purpose.
       // Look through this code for an example of how to do use the insertProperty function.
@@ -117,7 +115,8 @@ function buildAndShowHomeHTML (categories) {
       // Hint: you need to surround the chosen category short name with something before inserting
       // it into the home html snippet.
       //
-      // var homeHtmlToInsertIntoMainPage = ....
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName + "'");
+      
 
 
       // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
@@ -136,7 +135,9 @@ function chooseRandomCategory (categories) {
   var randomArrayIndex = Math.floor(Math.random() * categories.length);
 
   // return category object with that randomArrayIndex
+  console.log(categories[randomArrayIndex]);
   return categories[randomArrayIndex];
+
 }
 
 
